@@ -12,3 +12,5 @@ tsconfig.tsbuildinfo
 # Local working docs — keep out of the public repo
 CLAUDE.md
 BRANDING.md
+PRD.md
+PRD.docx
