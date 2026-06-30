@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Citrus — Visual Identity Guidelines</title>
+<link rel="stylesheet" href="fonts.css" />
+<style>
+  /* ============================================================
+     CITRUS — VISUAL IDENTITY GUIDELINES
+     All tokens lifted verbatim from app/globals.css,
+     tailwind.config.ts and BRANDING.md (Soft Violet pass).
+     ============================================================ */
+  :root {
+    --n-0:#fbfaff; --n-50:#f5f3fb; --n-100:#ece9f5; --n-200:#e4dff1;
+    --n-300:#d2cbe6; --n-400:#837f9a; --n-500:#6a6683; --n-600:#514d64;
+    --n-700:#3a3748; --n-800:#272430; --n-900:#1c1b22; --n-950:#110f17;
+
+    --accent:#6d5ef0; --accent-hover:#5b4ce0; --accent-tint:#9a8cff; --accent-fg:#ffffff;
+
+    --success:#15803d; --success-mid:#34d399; --success-bg:#dcfce7; --success-border:#86efac;
+    --warning:#b45309; --warning-mid:#fbbf24; --warning-bg:#fef3c7; --warning-border:#fcd34d;
+    --danger:#b91c1c;  --danger-mid:#f87171;  --danger-bg:#fee2e2;  --danger-border:#fca5a5;
+    --info:#1d4ed8;    --info-mid:#60a5fa;    --info-bg:#dbeafe;    --info-border:#93c5fd;
+
+    --bg-desk:var(--n-100);
+    --bg-app:var(--n-50);
+    --bg-surface:var(--n-0);
+    --bg-sunken:var(--n-100);
+    --border:var(--n-200);
+    --border-strong:var(--n-300);
+    --text-primary:var(--n-900);
+    --text-secondary:var(--n-600);
+    --text-muted:var(--n-400);
+
+    --radius-sm:6px; --radius-md:10px; --radius-lg:14px;
+    --shadow-sm:0 1px 2px rgba(14,15,17,.05), 0 1px 3px rgba(14,15,17,.03);
+    --shadow-md:0 1px 2px rgba(14,15,17,.04), 0 4px 12px rgba(14,15,17,.06);
+    --shadow-panel:0 1px 2px rgba(14,15,17,.04), 0 8px 24px rgba(14,15,17,.05);
+
+    --sans:"Hanken Grotesk", system-ui, sans-serif;
+    --mono:"JetBrains Mono", ui-monospace, monospace;
+    --track-label:0.06em;
+
+    --brand-mark:linear-gradient(135deg,#9a8cff 0%, var(--accent) 55%, var(--accent-hover) 100%);
+    --mark-inset:inset 0 1px 0 rgba(255,255,255,.45), inset 0 -1px 0 rgba(0,0,0,.12);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+  @page { size:8.5in 11in; margin:0; }
+
+  html { font-family:var(--sans); color:var(--text-primary); }
+
+  .page {
+    position:relative;
+    width:8.5in; height:11in;
+    background:var(--bg-desk);
+    padding:0.62in 0.66in;
+    page-break-after:always;
+    overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .page:last-child { page-break-after:auto; }
+
+  /* ---- shared atoms ---- */
+  .eyebrow {
+    font-family:var(--mono); font-size:9.5px; font-weight:600;
+    text-transform:uppercase; letter-spacing:var(--track-label); color:var(--text-muted);
+  }
+  .mono { font-family:var(--mono); }
+  .h-title { font-weight:600; letter-spacing:-0.02em; line-height:1.1; }
+  .muted { color:var(--text-muted); }
+  .sec { color:var(--text-secondary); }
+
+  .panel {
+    background:var(--bg-surface); border:1px solid var(--border);
+    border-radius:var(--radius-lg); box-shadow:var(--shadow-panel);
+  }
+
+  /* page header block (interior pages) */
+  .ph { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:18px; }
+  .ph .lhs .eyebrow { margin-bottom:7px; }
+  .ph h2 { font-size:30px; font-weight:600; letter-spacing:-0.025em; line-height:1.05; }
+  .ph .pageno { font-family:var(--mono); font-size:10px; color:var(--text-muted); }
+
+  .caption { font-size:10.5px; color:var(--text-secondary); line-height:1.45; }
+  .tag { font-family:var(--mono); font-size:8px; font-weight:600; text-transform:uppercase;
+         letter-spacing:.05em; padding:2px 6px; border-radius:var(--radius-sm); vertical-align:middle; }
+  .tag-obs { background:var(--success-bg); color:var(--success); border:1px solid var(--success-border); }
+  .tag-rec { background:var(--warning-bg); color:var(--warning); border:1px solid var(--warning-border); }
+
+  /* the C mark */
+  .mark {
+    display:grid; place-items:center; color:var(--accent-fg);
+    background-image:var(--brand-mark); box-shadow:var(--mark-inset);
+    font-weight:700; line-height:1;
+  }
+
+  /* generic small label */
+  .lbl { font-family:var(--mono); font-size:9px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.05em; }
+
+  /* ============================================================ */
+  /* PAGE 1 — COVER                                               */
+  /* ============================================================ */
+  .cover { justify-content:space-between; }
+  .cover-top { display:flex; justify-content:space-between; align-items:flex-start; }
+  .cover-mid { display:flex; flex-direction:column; align-items:flex-start; }
+  .cover .mark { width:84px; height:84px; border-radius:18px; font-size:48px; }
+  .wordmark { font-size:76px; font-weight:600; letter-spacing:-0.035em; line-height:1; margin-top:30px; }
+  .wordmark .dot { color:var(--accent); }
+  .cover .tagline { font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.04em;
+                    text-transform:uppercase; color:var(--text-secondary); margin-top:18px; }
+  .cover .deck-title { font-size:21px; font-weight:600; letter-spacing:-0.01em; margin-top:54px; max-width:5in; line-height:1.25; }
+  .cover .deck-sub { font-size:12px; color:var(--text-secondary); margin-top:8px; }
+  .dots { display:flex; gap:9px; margin-top:34px; }
+  .dots span { width:22px; height:22px; border-radius:50%; box-shadow:var(--mark-inset); }
+  .cover-foot { display:flex; justify-content:space-between; align-items:flex-end; }
+  .cover-foot .mono { font-size:10px; color:var(--text-muted); }
+
+  /* ============================================================ */
+  /* generic grid helpers                                         */
+  /* ============================================================ */
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .card { background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--radius-md);
+          box-shadow:var(--shadow-sm); padding:18px 18px; }
+  .card h3 { font-size:13px; font-weight:600; letter-spacing:-0.01em; }
+  .card .eyebrow { margin-bottom:11px; }
+
+  /* swatches */
+  .ramp { display:flex; border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow-sm); }
+  .ramp .chip { flex:1; height:74px; display:flex; align-items:flex-end; padding:6px 5px; }
+  .ramp .chip span { font-family:var(--mono); font-size:7px; font-weight:500; }
+
+  .swatch-row { display:flex; gap:10px; }
+  .swatch { flex:1; }
+  .swatch .sw { height:56px; border-radius:var(--radius-sm); box-shadow:var(--mark-inset); border:1px solid rgba(0,0,0,.04); }
+  .swatch .nm { font-family:var(--mono); font-size:9px; margin-top:6px; font-weight:600; }
+  .swatch .hx { font-family:var(--mono); font-size:8.5px; color:var(--text-muted); }
+  .swatch .role { font-size:9px; color:var(--text-secondary); margin-top:1px; line-height:1.3; }
+
+  /* semantic tier table */
+  .tiers { display:grid; grid-template-columns:repeat(4,1fr); gap:9px; }
+  .tier-col { }
+  .tier-col .tlab { font-family:var(--mono); font-size:9px; font-weight:600; margin-bottom:6px; }
+  .tier-swatches { display:flex; gap:4px; }
+  .tier-swatches i { flex:1; height:26px; border-radius:4px; display:block; }
+  .tier-hex { display:flex; gap:4px; margin-top:3px; }
+  .tier-hex i { flex:1; font-family:var(--mono); font-size:6.5px; color:var(--text-muted); text-align:center; }
+
+  /* type specimens */
+  .spec { border-bottom:1px solid var(--border); padding:9px 0; display:flex; align-items:baseline; gap:14px; }
+  .spec:last-child { border-bottom:0; }
+  .spec .meta { font-family:var(--mono); font-size:8.5px; color:var(--text-muted); width:118px; flex-shrink:0; line-height:1.3; }
+  .spec .sample { color:var(--text-primary); }
+
+  /* component demos */
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; height:32px; padding:0 15px;
+         border-radius:var(--radius-sm); font-family:var(--sans); font-size:12px; font-weight:500; }
+  .btn-primary { background:var(--accent); color:var(--accent-fg);
+                 box-shadow:inset 0 1px 0 rgba(255,255,255,.4), inset 0 -1px 0 rgba(0,0,0,.08); }
+  .btn-outline { background:var(--bg-surface); color:var(--text-primary); border:1px solid var(--border-strong); }
+  .btn-ghost { background:transparent; color:var(--text-secondary); }
+  .btn-danger { background:var(--bg-surface); color:var(--text-primary); border:1px solid var(--border-strong); }
+
+  .field { width:100%; height:32px; border-radius:var(--radius-sm); border:1px solid var(--border-strong);
+           background:var(--bg-surface); padding:0 11px; font-size:12px; color:var(--text-secondary); display:flex; align-items:center; }
+  .field.focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(109,94,240,.25); color:var(--text-primary); }
+
+  .pill { display:inline-flex; align-items:center; border-radius:var(--radius-sm); padding:2px 9px;
+          font-size:10.5px; font-weight:500; position:relative; overflow:hidden; }
+  .pill::after { content:""; position:absolute; inset:0;
+                 background-image:linear-gradient(180deg, rgba(255,255,255,.45) 0%, rgba(255,255,255,0) 100%); pointer-events:none; }
+  .p-success { background:var(--success-bg); color:var(--success); }
+  .p-info    { background:var(--info-bg);    color:var(--info); }
+  .p-warning { background:var(--warning-bg); color:var(--warning); }
+  .p-danger  { background:var(--danger-bg);  color:var(--danger); }
+  .p-neutral { background:var(--bg-sunken);  color:var(--text-secondary); }
+  .p-muted   { background:var(--bg-sunken);  color:var(--text-muted); }
+  .p-ghost   { background:transparent; color:var(--text-secondary); border:1px dashed var(--border-strong); }
+  .p-ghost::after{ display:none; }
+  .p-strike  { background:var(--bg-sunken); color:var(--text-muted); text-decoration:line-through; }
+  .p-accent  { background:var(--accent); color:var(--accent-fg); }
+
+  /* mini table */
+  .mtab { width:100%; border:1px solid var(--border); border-radius:var(--radius-md); overflow:hidden; box-shadow:var(--shadow-sm); border-collapse:separate; border-spacing:0; }
+  .mtab th { background:var(--bg-app); font-family:var(--mono); font-size:8px; font-weight:600; text-transform:uppercase;
+             letter-spacing:.05em; color:var(--text-muted); text-align:left; padding:7px 11px; border-bottom:1px solid var(--border); }
+  .mtab td { font-size:10.5px; padding:7px 11px; border-bottom:1px solid var(--border); color:var(--text-primary); }
+  .mtab tr:last-child td { border-bottom:0; }
+
+  /* elevation tiles */
+  .elev { height:78px; border-radius:var(--radius-md); background:var(--bg-surface); border:1px solid var(--border); }
+  .elev.sm { box-shadow:var(--shadow-sm); }
+  .elev.md { box-shadow:var(--shadow-md); }
+  .elev.panel { box-shadow:var(--shadow-panel); }
+
+  /* layering stack */
+  .stack { position:relative; height:96px; border-radius:var(--radius-md); overflow:hidden; }
+
+  /* radius demo */
+  .rdemo { display:flex; gap:14px; align-items:flex-end; }
+  .rdemo .r { background:var(--bg-sunken); border:1px solid var(--border-strong); }
+
+  /* spacing scale */
+  .space-row { display:flex; align-items:flex-end; gap:7px; }
+  .space-row .s { background:var(--accent); border-radius:2px 2px 0 0; }
+  .space-row .s i { display:block; font-family:var(--mono); font-size:7px; text-align:center; color:var(--text-muted); margin-top:4px; }
+
+  /* motion bars */
+  .motion .m { display:flex; align-items:center; gap:10px; padding:6px 0; border-bottom:1px solid var(--border); }
+  .motion .m:last-child { border-bottom:0; }
+  .motion .ms { font-family:var(--mono); font-size:10px; font-weight:600; width:62px; }
+  .motion .track { flex:1; height:5px; background:var(--bg-sunken); border-radius:3px; position:relative; }
+  .motion .track i { position:absolute; left:0; top:0; bottom:0; background:var(--accent); border-radius:3px; }
+  .motion .use { font-size:9.5px; color:var(--text-secondary); width:148px; }
+
+  /* principles */
+  .princ { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+  .princ .p { border-left:2px solid var(--accent); padding-left:11px; }
+  .princ .p .w { font-size:14px; font-weight:600; letter-spacing:-0.01em; }
+  .princ .p .d { font-size:10px; color:var(--text-secondary); margin-top:3px; line-height:1.4; }
+
+  .cheat { font-family:var(--mono); font-size:9px; line-height:1.85; color:var(--text-secondary); }
+  .cheat b { color:var(--text-primary); font-weight:600; }
+  .cheat .v { color:var(--accent); }
+
+  .sources { font-family:var(--mono); font-size:8.5px; line-height:1.7; color:var(--text-muted); }
+  .sources b { color:var(--text-secondary); }
+
+  .footer-note { margin-top:auto; padding-top:12px; font-family:var(--mono); font-size:8px; color:var(--text-muted);
+                 display:flex; justify-content:space-between; border-top:1px solid var(--border); }
+
+  .note {
+    background:var(--bg-app); border:1px solid var(--border); border-left:2px solid var(--accent);
+    border-radius:var(--radius-sm); padding:10px 13px; font-size:10px; line-height:1.5; color:var(--text-secondary);
+  }
+  .note b { color:var(--text-primary); }
+
+  .do, .dont { font-size:10px; line-height:1.5; padding-left:16px; position:relative; margin-bottom:5px; color:var(--text-secondary); }
+  .do::before { content:"✓"; position:absolute; left:0; color:var(--success); font-weight:700; }
+  .dont::before { content:"✕"; position:absolute; left:0; color:var(--danger); font-weight:700; }
+</style>
+</head>
+<body>
+
+<!-- ============================ PAGE 1 — COVER ============================ -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="mark">C</div>
+    <div style="text-align:right">
+      <div class="eyebrow">Soft Violet · v1.0</div>
+      <div class="mono" style="font-size:10px;color:var(--text-muted);margin-top:6px;">2026 · Internal</div>
+    </div>
+  </div>
+
+  <div class="cover-mid">
+    <div class="wordmark">Citrus<span class="dot">.</span></div>
+    <div class="tagline">Creative Operations</div>
+    <div class="deck-title">Visual Identity Guidelines</div>
+    <div class="deck-sub">The design language of a studio-running OS — extracted from the source.</div>
+    <div class="dots">
+      <span style="background:var(--accent)"></span>
+      <span style="background:var(--n-900)"></span>
+      <span style="background:var(--success-mid)"></span>
+      <span style="background:var(--warning-mid)"></span>
+      <span style="background:var(--danger-mid)"></span>
+      <span style="background:var(--info-mid)"></span>
+    </div>
+  </div>
+
+  <div class="cover-foot">
+    <div class="mono">Hanken Grotesk · JetBrains Mono</div>
+    <div class="mono">#6d5ef0</div>
+  </div>
+</section>
+
+<!-- ============================ PAGE 2 — LOGO ============================ -->
+<section class="page">
+  <div class="ph">
+    <div class="lhs"><div class="eyebrow">01 · The Mark</div><h2>Logo &amp; Wordmark</h2></div>
+    <div class="pageno">02</div>
+  </div>
+
+  <div class="grid2" style="margin-bottom:14px;">
+    <div class="card">
+      <div class="eyebrow">The Mark <span class="tag tag-obs">Observed</span></div>
+      <div style="display:flex;align-items:center;gap:22px;">
+        <div class="mark" style="width:88px;height:88px;border-radius:16px;font-size:50px;">C</div>
+        <div style="font-size:10.5px;line-height:1.55;color:var(--text-secondary);">
+          A single <b style="color:var(--text-primary)">C</b> glyph, Hanken Grotesk bold, set white
+          on the violet gradient square. A top highlight + bottom shadow give it a tactile,
+          slightly raised face.
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Wordmark <span class="tag tag-obs">Observed</span></div>
+      <div style="font-size:38px;font-weight:600;letter-spacing:-0.03em;">Citrus</div>
+      <div class="caption" style="margin-top:8px;">
+        Hanken Grotesk · Semibold (600) · tracking <span class="mono">-0.02em</span>.
+        Lowercase after the cap. Pairs with the eyebrow tagline below it.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px;">
+    <div class="eyebrow">Lockup — as shipped in the sidebar <span class="tag tag-obs">Observed</span></div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="mark" style="width:32px;height:32px;border-radius:6px;font-size:16px;">C</div>
+      <div>
+        <div style="font-size:16px;font-weight:600;letter-spacing:-0.02em;line-height:1.1;">Citrus</div>
+        <div style="font-size:11px;color:var(--text-muted);">Creative Operations</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="eyebrow">Anatomy <span class="tag tag-obs">Observed</span></div>
+      <table class="mtab" style="box-shadow:none;">
+        <tr><td>Container</td><td class="mono">32px · radius 6</td></tr>
+        <tr><td>Fill</td><td class="mono">135° · #9a8cff→#6d5ef0→#5b4ce0</td></tr>
+        <tr><td>Glyph</td><td class="mono">Hanken · 700 · #fff</td></tr>
+        <tr><td>Inset</td><td class="mono">+45% top · −12% bottom</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Do &amp; Don't <span class="tag tag-rec">Recommended</span></div>
+      <div class="do">Keep the gradient direction at 135°</div>
+      <div class="do">Clearspace ≥ the cap-height around the mark</div>
+      <div class="dont">Recolor the glyph or flatten the gradient</div>
+      <div class="dont">Set the wordmark in any face but Hanken</div>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:14px;">
+    <b>No raster/vector asset ships.</b> The mark is drawn in CSS (gradient + inset shadow), so it is
+    resolution-independent. There is no favicon or logo file in the repo — this lockup is the source of truth.
+  </div>
+
+  <div class="footer-note"><span>Citrus — Visual Identity Guidelines</span><span>Soft Violet · v1.0</span></div>
+</section>
+
+<!-- ============================ PAGE 3 — COLOR ============================ -->
+<section class="page">
+  <div class="ph">
+    <div class="lhs"><div class="eyebrow">02 · Palette</div><h2>Color</h2></div>
+    <div class="pageno">03</div>
+  </div>
+
+  <div class="eyebrow" style="margin-bottom:8px;">Neutral ramp — lavender-tinted <span class="tag tag-obs">Observed</span></div>
+  <div class="ramp" style="margin-bottom:6px;">
+    <div class="chip" style="background:var(--n-0)"><span style="color:var(--n-600)">0</span></div>
+    <div class="chip" style="background:var(--n-50)"><span style="color:var(--n-600)">50</span></div>
+    <div class="chip" style="background:var(--n-100)"><span style="color:var(--n-600)">100</span></div>
+    <div class="chip" style="background:var(--n-200)"><span style="color:var(--n-600)">200</span></div>
+    <div class="chip" style="background:var(--n-300)"><span style="color:var(--n-700)">300</span></div>
+    <div class="chip" style="background:var(--n-400)"><span style="color:#fff">400</span></div>
+    <div class="chip" style="background:var(--n-500)"><span style="color:#fff">500</span></div>
+    <div class="chip" style="background:var(--n-600)"><span style="color:#fff">600</span></div>
+    <div class="chip" style="background:var(--n-700)"><span style="color:#fff">700</span></div>
+    <div class="chip" style="background:var(--n-800)"><span style="color:#fff">800</span></div>
+    <div class="chip" style="background:var(--n-900)"><span style="color:#fff">900</span></div>
+    <div class="chip" style="background:var(--n-950)"><span style="color:#fff">950</span></div>
+  </div>
+  <div class="caption" style="margin-bottom:16px;">
+    Faint purple undertone (blue&nbsp;&gt;&nbsp;red&nbsp;&gt;&nbsp;green). Every surface, border and text color
+    is drawn from this single ramp — the brand lives in the neutrals, not only the accent.
+  </div>
+
+  <div class="grid2" style="margin-bottom:16px;">
+    <div class="card">
+      <div class="eyebrow">Accent — Soft Violet <span class="tag tag-obs">Observed</span></div>
+      <div class="swatch-row">
+        <div class="swatch"><div class="sw" style="background:var(--accent)"></div><div class="nm">accent</div><div class="hx">#6d5ef0</div><div class="role">Brand · primary CTA</div></div>
+        <div class="swatch"><div class="sw" style="background:var(--accent-hover)"></div><div class="nm">hover</div><div class="hx">#5b4ce0</div><div class="role">Pressed state</div></div>
+        <div class="swatch"><div class="sw" style="background:var(--accent-fg);border:1px solid var(--border)"></div><div class="nm">accent-fg</div><div class="hx">#ffffff</div><div class="role">Ink on violet</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Accent restraint <span class="tag tag-obs">Observed</span></div>
+      <div class="do">Brand mark · active nav · primary buttons · focus rings</div>
+      <div class="dont">Status badges — these use the semantic palette</div>
+      <div class="dont">Panel borders, hover wells, info chips</div>
+      <div class="caption" style="margin-top:6px;">Monochrome accent. No second pop colour.</div>
+    </div>
+  </div>
+
+  <div class="eyebrow" style="margin-bottom:9px;">Semantic state — four tiers each (text · mid · bg · border) <span class="tag tag-obs">Observed</span></div>
+  <div class="tiers" style="margin-bottom:16px;">
+    <div class="tier-col">
+      <div class="tlab" style="color:var(--success)">success</div>
+      <div class="tier-swatches"><i style="background:var(--success)"></i><i style="background:var(--success-mid)"></i><i style="background:var(--success-bg)"></i><i style="background:var(--success-border)"></i></div>
+      <div class="tier-hex"><i>15803d</i><i>34d399</i><i>dcfce7</i><i>86efac</i></div>
+    </div>
+    <div class="tier-col">
+      <div class="tlab" style="color:var(--warning)">warning</div>
+      <div class="tier-swatches"><i style="background:var(--warning)"></i><i style="background:var(--warning-mid)"></i><i style="background:var(--warning-bg)"></i><i style="background:var(--warning-border)"></i></div>
+      <div class="tier-hex"><i>b45309</i><i>fbbf24</i><i>fef3c7</i><i>fcd34d</i></div>
+    </div>
+    <div class="tier-col">
+      <div class="tlab" style="color:var(--danger)">danger</div>
+      <div class="tier-swatches"><i style="background:var(--danger)"></i><i style="background:var(--danger-mid)"></i><i style="background:var(--danger-bg)"></i><i style="background:var(--danger-border)"></i></div>
+      <div class="tier-hex"><i>b91c1c</i><i>f87171</i><i>fee2e2</i><i>fca5a5</i></div>
+    </div>
+    <div class="tier-col">
+      <div class="tlab" style="color:var(--info)">info</div>
+      <div class="tier-swatches"><i style="background:var(--info)"></i><i style="background:var(--info-mid)"></i><i style="background:var(--info-bg)"></i><i style="background:var(--info-border)"></i></div>
+      <div class="tier-hex"><i>1d4ed8</i><i>60a5fa</i><i>dbeafe</i><i>93c5fd</i></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>Contrast.</b> White on <span class="mono">#6d5ef0</span> ≈ <b>4.6:1</b> — passes WCAG AA for normal text
+    <span class="tag tag-obs">Observed</span>. Text-primary <span class="mono">#1c1b22</span> on surface
+    <span class="mono">#fbfaff</span> ≈ 15:1. The dark <span class="mono">--*</span> tier is text-only; use
+    <span class="mono">--*-mid</span> for solid fills.
+  </div>
+
+  <div class="footer-note"><span>Citrus — Visual Identity Guidelines</span><span>Soft Violet · v1.0</span></div>
+</section>
+
+<!-- ============================ PAGE 4 — TYPE ============================ -->
+<section class="page">
+  <div class="ph">
+    <div class="lhs"><div class="eyebrow">03 · Type</div><h2>Typography</h2></div>
+    <div class="pageno">04</div>
+  </div>
+
+  <div class="grid2" style="margin-bottom:14px;">
+    <div class="card">
+      <div class="eyebrow">Hanken Grotesk — interface</div>
+      <div style="font-size:46px;font-weight:600;letter-spacing:-0.02em;line-height:1;">Ag</div>
+      <div style="font-size:11px;color:var(--text-secondary);margin-top:6px;">400 · 500 · 600 · 700</div>
+      <div style="margin-top:4px;font-weight:400;">Regular</div>
+      <div style="font-weight:500;">Medium</div>
+      <div style="font-weight:600;">Semibold</div>
+      <div style="font-weight:700;">Bold</div>
+    </div>
+    <div class="card">
+      <div class="eyebrow">JetBrains Mono — numbers &amp; labels</div>
+      <div class="mono" style="font-size:46px;font-weight:500;letter-spacing:-0.02em;line-height:1;">0123</div>
+      <div class="mono" style="font-size:11px;color:var(--text-secondary);margin-top:6px;">400 · 500 · tabular-nums</div>
+      <div class="mono" style="margin-top:4px;">$48,500 · METRICS</div>
+      <div class="eyebrow" style="margin-top:6px;">EYEBROWS · TABLE HEADS · CODES</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px;">
+    <div class="eyebrow">Type scale — as rendered <span class="tag tag-obs">Observed</span></div>
+    <div class="spec"><div class="meta">3xl · 40px · 600<br>metric-value · mono</div><div class="sample mono" style="font-size:40px;font-weight:600;letter-spacing:-0.02em;">48</div></div>
+    <div class="spec"><div class="meta">2xl · 28px · 600<br>page title</div><div class="sample" style="font-size:28px;font-weight:600;letter-spacing:-0.025em;">Dashboard</div></div>
+    <div class="spec"><div class="meta">xl · 22px · 600<br>section header</div><div class="sample" style="font-size:22px;font-weight:600;letter-spacing:-0.02em;">Projects</div></div>
+    <div class="spec"><div class="meta">lg · 18px · 600<br>card title</div><div class="sample" style="font-size:18px;font-weight:600;">Up next</div></div>
+    <div class="spec"><div class="meta">base · 15px · 400<br>body</div><div class="sample" style="font-size:15px;">A lightweight ERP for a creative studio.</div></div>
+    <div class="spec"><div class="meta">sm · 13px · 400<br>table cells</div><div class="sample" style="font-size:13px;color:var(--text-secondary)">Secondary &amp; table text</div></div>
+    <div class="spec"><div class="meta">xs · 12px · 600<br>eyebrow · tracked</div><div class="sample eyebrow" style="font-size:12px;">WORKSPACE</div></div>
+  </div>
+
+  <div class="note">
+    <b>Source-of-truth note.</b> Components render through Tailwind's <span class="mono">fontSize</span> scale
+    (40/28/22/18/15/13/12) — which matches BRANDING.md. The <span class="mono">--text-*</span> CSS variables in
+    <span class="mono">globals.css</span> (30/24/19/16/14…) are <b>not consumed by any component</b> and read as
+    stale. Treat Tailwind as authoritative. <span class="tag tag-rec">Recommended</span> reconcile the two.
+  </div>
+
+  <div class="footer-note"><span>Citrus — Visual Identity Guidelines</span><span>Soft Violet · v1.0</span></div>
+</section>
+
+<!-- ============================ PAGE 5 — SURFACES ============================ -->
+<section class="page">
+  <div class="ph">
+    <div class="lhs"><div class="eyebrow">04 · Material</div><h2>Surfaces &amp; Elevation</h2></div>
+    <div class="pageno">05</div>
+  </div>
+
+  <div class="grid2" style="margin-bottom:14px;">
+    <div class="card">
+      <div class="eyebrow">Layering — desk to surface <span class="tag tag-obs">Observed</span></div>
+      <div class="stack" style="background:var(--bg-desk);padding:14px;">
+        <div style="height:100%;background:var(--bg-app);border-radius:8px;padding:12px;">
+          <div style="height:100%;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-panel);display:grid;place-items:center;">
+            <span class="mono" style="font-size:9px;color:var(--text-muted)">surface · #fbfaff</span>
+          </div>
+        </div>
+      </div>
+      <div class="caption" style="margin-top:8px;">desk <span class="mono">n-100</span> → app <span class="mono">n-50</span> → panel <span class="mono">n-0</span>. Panels float on the desk.</div>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Elevation tiers <span class="tag tag-obs">Observed</span></div>
+      <div style="display:flex;gap:12px;">
+        <div style="flex:1;text-align:center;"><div class="elev sm"></div><div class="lbl" style="margin-top:7px;">shadow-sm</div></div>
+        <div style="flex:1;text-align:center;"><div class="elev md"></div><div class="lbl" style="margin-top:7px;">shadow-md</div></div>
+        <div style="flex:1;text-align:center;"><div class="elev panel"></div><div class="lbl" style="margin-top:7px;">panel</div></div>
+      </div>
+      <div class="caption" style="margin-top:10px;">Borders carry most of the depth; shadows add a faint lift. Floating panels use the soft two-stop <span class="mono">panel</span> shadow.</div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-bottom:14px;">
+    <div class="card">
+      <div class="eyebrow">Radii <span class="tag tag-obs">Observed</span></div>
+      <div class="rdemo">
+        <div style="text-align:center;"><div class="r" style="width:62px;height:46px;border-radius:6px;"></div><div class="lbl" style="margin-top:7px;">sm · 6</div></div>
+        <div style="text-align:center;"><div class="r" style="width:62px;height:46px;border-radius:10px;"></div><div class="lbl" style="margin-top:7px;">md · 10</div></div>
+        <div style="text-align:center;"><div class="r" style="width:62px;height:46px;border-radius:14px;"></div><div class="lbl" style="margin-top:7px;">lg · 14</div></div>
+      </div>
+      <div class="caption" style="margin-top:9px;">sm: buttons/inputs/pills · md: cards/dialogs · lg: large panels.</div>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Borders <span class="tag tag-obs">Observed</span></div>
+      <div style="display:flex;gap:12px;">
+        <div style="flex:1;height:46px;border-radius:8px;border:1px solid var(--border);display:grid;place-items:center;"><span class="lbl">line · n-200</span></div>
+        <div style="flex:1;height:46px;border-radius:8px;border:1px solid var(--border-strong);display:grid;place-items:center;"><span class="lbl">strong · n-300</span></div>
+        <div style="flex:1;height:46px;border-radius:8px;border:1px dashed var(--border-strong);display:grid;place-items:center;"><span class="lbl">dashed</span></div>
+      </div>
+      <div class="caption" style="margin-top:9px;">Default dividers use <span class="mono">line</span>; inputs &amp; empty-states step up to <span class="mono">strong</span>.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow">Gradients &amp; sheens <span class="tag tag-obs">Observed</span></div>
+    <div style="display:flex;gap:14px;align-items:center;">
+      <div style="text-align:center;"><div style="width:70px;height:54px;border-radius:10px;background-image:var(--brand-mark);box-shadow:var(--mark-inset);"></div><div class="lbl" style="margin-top:7px;">brand-mark</div></div>
+      <div style="text-align:center;"><div style="width:70px;height:54px;border-radius:10px;background:var(--bg-surface);background-image:radial-gradient(circle at 100% 100%, rgba(109,94,240,.20) 0%, rgba(109,94,240,.05) 35%, transparent 65%);border:1px solid var(--border);"></div><div class="lbl" style="margin-top:7px;">upnext-glow</div></div>
+      <div style="text-align:center;"><div class="pill p-info" style="font-size:11px;">In progress</div><div class="lbl" style="margin-top:9px;">badge sheen</div></div>
+      <div class="caption" style="flex:1;">The brand-mark gradient (135°) is the only chromatic gradient. The up-next card glows violet in its
+        bottom-right corner; pills carry a low-opacity white sheen for depth without an outline.</div>
+    </div>
+  </div>
+
+  <div class="footer-note"><span>Citrus — Visual Identity Guidelines</span><span>Soft Violet · v1.0</span></div>
+</section>
+
+<!-- ============================ PAGE 6 — COMPONENTS ============================ -->
+<section class="page">
+  <div class="ph">
+    <div class="lhs"><div class="eyebrow">05 · Interface</div><h2>Components</h2></div>
+    <div class="pageno">06</div>
+  </div>
+
+  <div class="grid2" style="margin-bottom:14px;">
+    <div class="card">
+      <div class="eyebrow">Buttons <span class="tag tag-obs">Observed</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:9px;">
+        <span class="btn btn-primary">Primary</span>
+        <span class="btn btn-outline">Outline</span>
+        <span class="btn btn-ghost">Ghost</span>
+        <span class="btn btn-danger">Danger</span>
+      </div>
+      <div class="caption" style="margin-top:10px;">Height 36 (md) / 32 (sm) · radius 6 · medium weight. Primary fills accent with a 1px inner sheen; press scales to 0.98.</div>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Inputs &amp; focus <span class="tag tag-obs">Observed</span></div>
+      <div class="field" style="margin-bottom:9px;">Placeholder text</div>
+      <div class="field focus">Focused — violet ring</div>
+      <div class="caption" style="margin-top:10px;">Border <span class="mono">strong</span> → accent on focus, with a <span class="mono">ring-accent/25</span> halo. Errors swap to the danger border + ring.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px;">
+    <div class="eyebrow">Status badges — semantic, never accent <span class="tag tag-obs">Observed</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+      <span class="pill p-success">Completed</span>
+      <span class="pill p-info">In progress</span>
+      <span class="pill p-warning">Review</span>
+      <span class="pill p-danger">Urgent</span>
+      <span class="pill p-ghost">To do</span>
+      <span class="pill p-neutral">Medium</span>
+      <span class="pill p-muted">Archived</span>
+      <span class="pill p-strike">Cancelled</span>
+    </div>
+    <div class="caption" style="margin-top:10px;">green = done · blue = in motion · amber = needs attention · red = urgent · dashed ghost = not started · sunken neutral/muted = quiet states.</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card" style="padding:0;overflow:hidden;">
+      <table class="mtab" style="border:0;border-radius:0;box-shadow:none;">
+        <thead><tr><th>Project</th><th>Status</th><th>Budget</th></tr></thead>
+        <tbody>
+          <tr><td>Helios rebrand</td><td><span class="pill p-info">Active</span></td><td class="mono">$48,500</td></tr>
+          <tr><td>Aero launch site</td><td><span class="pill p-warning">Review</span></td><td class="mono">$12,000</td></tr>
+          <tr><td>Mono campaign</td><td><span class="pill p-success">Completed</span></td><td class="mono">$31,200</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Dialog &amp; empty state <span class="tag tag-obs">Observed</span></div>
+      <div style="border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow-md);overflow:hidden;margin-bottom:10px;">
+        <div style="padding:9px 13px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:12px;font-weight:600;">New project</span><span class="muted" style="font-size:13px;">✕</span>
+        </div>
+        <div style="padding:11px 13px;display:flex;justify-content:flex-end;gap:7px;">
+          <span class="btn btn-outline" style="height:28px;font-size:11px;">Cancel</span>
+          <span class="btn btn-primary" style="height:28px;font-size:11px;">Create</span>
+        </div>
+      </div>
+      <div style="border:1px dashed var(--border-strong);border-radius:10px;padding:14px;text-align:center;">
+        <div style="font-size:12px;font-weight:600;">No tasks yet</div>
+        <div class="caption">Dashed border · centered · muted icon well.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note"><span>Citrus — Visual Identity Guidelines</span><span>Soft Violet · v1.0</span></div>
+</section>
+
+<!-- ============================ PAGE 7 — MOTION & SPACING ============================ -->
+<section class="page">
+  <div class="ph">
+    <div class="lhs"><div class="eyebrow">06 · Rhythm</div><h2>Motion &amp; Spacing</h2></div>
+    <div class="pageno">07</div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px;">
+    <div class="eyebrow">Duration scale <span class="tag tag-obs">Observed</span></div>
+    <div class="motion">
+      <div class="m"><span class="ms">100ms</span><span class="track"><i style="width:14%"></i></span><span class="use">button press (scale 0.98)</span></div>
+      <div class="m"><span class="ms">120ms</span><span class="track"><i style="width:17%"></i></span><span class="use">tooltip fade-in</span></div>
+      <div class="m"><span class="ms">150ms</span><span class="track"><i style="width:21%"></i></span><span class="use">card hover-lift</span></div>
+      <div class="m"><span class="ms">200ms</span><span class="track"><i style="width:29%"></i></span><span class="use">nav rail slide</span></div>
+      <div class="m"><span class="ms">220ms</span><span class="track"><i style="width:31%"></i></span><span class="use">page-enter · drawer-in</span></div>
+      <div class="m"><span class="ms">600ms</span><span class="track"><i style="width:64%"></i></span><span class="use">flash-saved ring</span></div>
+      <div class="m"><span class="ms">700ms</span><span class="track"><i style="width:100%"></i></span><span class="use">stacked-bar expand</span></div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-bottom:14px;">
+    <div class="card">
+      <div class="eyebrow">Easing <span class="tag tag-obs">Observed</span></div>
+      <div class="cheat">
+        <div><b>standard</b> <span class="v">cubic-bezier(.4,0,.2,1)</span></div>
+        <div style="color:var(--text-muted)">page-enter · bar-expand</div>
+        <div style="margin-top:7px;"><b>drawer</b> <span class="v">cubic-bezier(.32,.72,0,1)</span></div>
+        <div style="color:var(--text-muted)">mobile drawer in</div>
+        <div style="margin-top:7px;"><b>ease / ease-out</b></div>
+        <div style="color:var(--text-muted)">hovers · rail · flash</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Reduced motion <span class="tag tag-obs">Observed</span></div>
+      <div class="caption">A global <span class="mono">prefers-reduced-motion</span> query collapses every animation
+        and transition to <span class="mono">0.01ms</span> — page-enter, flash-saved, the rail slide, bar-expand and
+        drawers all neutralise. Motion is decorative, never load-bearing.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow">Spacing — 4px base, gaps skipped on purpose <span class="tag tag-obs">Observed</span></div>
+    <div class="space-row" style="margin-top:6px;">
+      <div class="s" style="width:24px;height:4px;"><i>1·4</i></div>
+      <div class="s" style="width:24px;height:8px;"><i>2·8</i></div>
+      <div class="s" style="width:24px;height:12px;"><i>3·12</i></div>
+      <div class="s" style="width:24px;height:16px;"><i>4·16</i></div>
+      <div class="s" style="width:24px;height:20px;"><i>5·20</i></div>
+      <div class="s" style="width:24px;height:24px;"><i>6·24</i></div>
+      <div class="s" style="width:24px;height:32px;"><i>8·32</i></div>
+      <div class="s" style="width:24px;height:40px;"><i>10·40</i></div>
+      <div class="s" style="width:24px;height:48px;"><i>12·48</i></div>
+      <div class="s" style="width:24px;height:64px;"><i>16·64</i></div>
+    </div>
+    <div class="caption" style="margin-top:14px;">No <span class="mono">7 · 9 · 11</span> — the gaps keep vertical rhythm tight.
+      Layout dims: sidebar <span class="mono">248</span> · topbar <span class="mono">60</span> · gutter <span class="mono">20</span> · content max <span class="mono">1200</span> · reflow at <span class="mono">880px</span>.</div>
+  </div>
+
+  <div class="footer-note"><span>Citrus — Visual Identity Guidelines</span><span>Soft Violet · v1.0</span></div>
+</section>
+
+<!-- ============================ PAGE 8 — PRINCIPLES ============================ -->
+<section class="page">
+  <div class="ph">
+    <div class="lhs"><div class="eyebrow">07 · Reference</div><h2>Principles</h2></div>
+    <div class="pageno">08</div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px;">
+    <div class="eyebrow">Character</div>
+    <div class="princ">
+      <div class="p"><div class="w">Calm</div><div class="d">Quiet neutrals; the accent earns attention by being rare.</div></div>
+      <div class="p"><div class="w">Premium</div><div class="d">Lavender off-whites, soft elevation, tactile sheens.</div></div>
+      <div class="p"><div class="w">Precise</div><div class="d">Tight tracking, dense scale, no bounce — Linear-grade.</div></div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-bottom:14px;">
+    <div class="card">
+      <div class="eyebrow">Token cheat-sheet</div>
+      <div class="cheat">
+        <div><b>accent</b> <span class="v">#6d5ef0</span> / hover <span class="v">#5b4ce0</span></div>
+        <div><b>surface</b> #fbfaff · <b>app</b> #f5f3fb · <b>desk</b> #ece9f5</div>
+        <div><b>text</b> 1c1b22 / 514d64 / 837f9a</div>
+        <div><b>radius</b> 6 · 10 · 14</div>
+        <div><b>type</b> 40·28·22·18·15·13·12</div>
+        <div><b>space</b> 4·8·12·16·20·24·32·40·48·64</div>
+        <div><b>font</b> Hanken Grotesk · JetBrains Mono</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Findings — reconcile <span class="tag tag-rec">Recommended</span></div>
+      <div class="caption" style="line-height:1.55;">
+        <b style="color:var(--text-primary)">1.</b> <span class="mono">--text-*</span> &amp; <span class="mono">--radius-*</span> vars in globals.css
+        (30/24/19; 6/8/12) are unused — Tailwind's scale (40/28/22; 6/10/14) renders. Delete or sync the vars.<br>
+        <b style="color:var(--text-primary)">2.</b> <span class="mono">.brand-mark-gradient</span> comment says "chartreuse" — the gradient is violet. Stale from a prior pass.<br>
+        <b style="color:var(--text-primary)">3.</b> Foundation <span class="mono">--accent</span> = n-900; the Soft Violet block overrides it. Comment the block out for a grayscale fallback.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow">Sources — grounded in the repo</div>
+    <div class="sources">
+      <b>app/globals.css</b> — tokens, ramp, brand pass, dark theme, animations, reduced-motion<br>
+      <b>tailwind.config.ts</b> — rendered type scale, radii, color &amp; spacing utilities<br>
+      <b>BRANDING.md</b> — brand narrative, accent restraint, badge weights<br>
+      <b>app/layout.tsx</b> — font loading (Google Fonts CSS2)<br>
+      <b>components/sidebar.tsx</b> — wordmark lockup &amp; the C mark<br>
+      <b>components/ui/</b> — button · input · badge · dialog · table · empty-state
+    </div>
+  </div>
+
+  <div class="footer-note"><span>Citrus — Creative Operations</span><span>Visual Identity Guidelines · Soft Violet v1.0 · 2026</span></div>
+</section>
+
+</body>
+</html>

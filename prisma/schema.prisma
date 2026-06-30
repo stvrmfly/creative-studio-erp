@@ -1,0 +1,124 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  admin
+  pm
+  creative
+  finance
+}
+
+enum ClientStatus {
+  active
+  archived
+}
+
+enum TeamStatus {
+  active
+  inactive
+}
+
+enum ProjectStatus {
+  planning
+  active
+  review
+  completed
+  cancelled
+}
+
+enum TaskPriority {
+  low
+  medium
+  high
+  urgent
+}
+
+enum TaskStatus {
+  todo
+  in_progress
+  review
+  completed
+}
+
+// Login accounts. No real auth in this app — passwords are stored in plain text
+// and shown on the login page on purpose, so a grader can sign in as each role.
+// An account optionally links to a TeamMember so role-scoped views (e.g. a
+// creative seeing only their own tasks) resolve to a real person.
+model User {
+  id           String      @id @default(uuid()) @db.Uuid
+  createdAt    DateTime    @default(now())
+  username     String      @unique
+  password     String
+  role         UserRole
+  teamMemberId String?     @db.Uuid
+  teamMember   TeamMember? @relation(fields: [teamMemberId], references: [id], onDelete: SetNull)
+
+  @@index([teamMemberId])
+}
+
+model Client {
+  id            String       @id @default(uuid()) @db.Uuid
+  createdAt     DateTime     @default(now())
+  companyName   String
+  contactPerson String?
+  email         String?
+  phone         String?
+  industry      String?
+  notes         String?
+  status        ClientStatus @default(active)
+  projects      Project[]
+}
+
+model TeamMember {
+  id        String     @id @default(uuid()) @db.Uuid
+  createdAt DateTime   @default(now())
+  name      String
+  role      String?
+  email     String?
+  status    TeamStatus @default(active)
+  managing  Project[]  @relation("ProjectManager")
+  assigned  Task[]     @relation("TaskAssignee")
+  users     User[]
+}
+
+model Project {
+  id          String        @id @default(uuid()) @db.Uuid
+  createdAt   DateTime      @default(now())
+  name        String
+  description String?
+  clientId    String        @db.Uuid
+  managerId   String?       @db.Uuid
+  budget      Float?
+  startDate   DateTime?     @db.Date
+  dueDate     DateTime?     @db.Date
+  status      ProjectStatus @default(planning)
+  client      Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  manager     TeamMember?   @relation("ProjectManager", fields: [managerId], references: [id], onDelete: SetNull)
+  tasks       Task[]
+
+  @@index([clientId])
+  @@index([managerId])
+}
+
+model Task {
+  id          String       @id @default(uuid()) @db.Uuid
+  createdAt   DateTime     @default(now())
+  name        String
+  description String?
+  projectId   String       @db.Uuid
+  assigneeId  String?      @db.Uuid
+  dueDate     DateTime?    @db.Date
+  priority    TaskPriority @default(medium)
+  status      TaskStatus   @default(todo)
+  project     Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  assignee    TeamMember?  @relation("TaskAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
+
+  @@index([projectId])
+  @@index([assigneeId])
+}

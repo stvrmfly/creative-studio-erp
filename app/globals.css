@@ -1,0 +1,344 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: "Hanken Grotesk", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    /* Type scale — tightened for a dense, Linear-grade read.
+       Emphasis comes from weight + tracking, not size. */
+    --text-xs:   0.75rem;    /* 12 — captions, eyebrows, labels */
+    --text-sm:   0.8125rem;  /* 13 — secondary text, table cells */
+    --text-base: 0.875rem;   /* 14 — body default */
+    --text-lg:   1rem;       /* 16 — card / panel title */
+    --text-xl:   1.1875rem;  /* 19 — section header */
+    --text-2xl:  1.5rem;     /* 24 — page title */
+    --text-3xl:  1.875rem;   /* 30 — hero metric numbers */
+
+    /* Weights */
+    --fw-regular:  400;
+    --fw-medium:   500;
+    --fw-semibold: 600;
+    --fw-bold:     700;
+
+    /* Line heights */
+    --leading-tight:  1.15;
+    --leading-snug:   1.35;
+    --leading-normal: 1.55;
+
+    /* Spacing scale (4px base) */
+    --space-1:  4px;
+    --space-2:  8px;
+    --space-3:  12px;
+    --space-4:  16px;
+    --space-5:  20px;
+    --space-6:  24px;
+    --space-8:  32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+
+    /* Radii — crisp, slightly tighter corners */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+
+    /* Elevation — borders carry most of it; shadows add a faint lift so
+       surfaces read off the canvas without looking heavy. */
+    --shadow-sm: 0 1px 2px rgba(14, 15, 17, 0.05), 0 1px 3px rgba(14, 15, 17, 0.03);
+    --shadow-md: 0 1px 2px rgba(14, 15, 17, 0.04), 0 4px 12px rgba(14, 15, 17, 0.06);
+
+    /* Layout dims */
+    --sidebar-w: 248px;
+    --topbar-h:  60px;
+    --gutter:    20px;
+
+    /* "Desk" background — visible in the gutters around the floating panels.
+       A touch darker than --bg-app so the panel edges read clearly. */
+    --bg-desk: var(--n-100);
+
+    /* Soft, diffuse elevation for floating panels.
+       Two-stop shadow: 1px grounding + a wider blur. */
+    --shadow-panel:
+      0 1px 2px rgba(14, 15, 17, 0.04),
+      0 8px 24px rgba(14, 15, 17, 0.05);
+
+    /* Neutral ramp carries a faint LAVENDER undertone (blue > red > green) so
+       surfaces read as soft violet off-whites rather than dead grey — the
+       brand lives in the neutrals, not just the accent. Whole ramp shifts
+       together so cards (n-0) still lift off the canvas (n-50) and desk. */
+    --n-0: #fbfaff;
+    --n-50: #f5f3fb;
+    --n-100: #ece9f5;
+    --n-200: #e4dff1;
+    --n-300: #d2cbe6;
+    --n-400: #837f9a;
+    --n-500: #6a6683;
+    --n-600: #514d64;
+    --n-700: #3a3748;
+    --n-800: #272430;
+    --n-900: #1c1b22;
+    --n-950: #110f17;
+
+    --bg-app: var(--n-50);
+    --bg-surface: var(--n-0);
+    --bg-sunken: var(--n-100);
+    --border: var(--n-200);
+    --border-strong: var(--n-300);
+    --text-primary: var(--n-900);
+    --text-secondary: var(--n-600);
+    --text-muted: var(--n-400);
+    --accent: var(--n-900);
+    --accent-hover: var(--n-800);
+    --accent-fg: var(--n-0);
+
+    /* Semantic state colors — three tiers each.
+         --*       dark, for text on light tinted bgs (used in badges)
+         --*-mid   medium, for solid fills (chart segments, bars, dots)
+         --*-bg    very light, for tinted badge backgrounds
+         --*-border light, for badge borders */
+    --success:        #15803d;
+    --success-mid:    #34d399;
+    --success-bg:     #dcfce7;
+    --success-border: #86efac;
+
+    --warning:        #b45309;
+    --warning-mid:    #fbbf24;
+    --warning-bg:     #fef3c7;
+    --warning-border: #fcd34d;
+
+    --danger:         #b91c1c;
+    --danger-mid:     #f87171;
+    --danger-bg:      #fee2e2;
+    --danger-border:  #fca5a5;
+
+    --info:           #1d4ed8;
+    --info-mid:       #60a5fa;
+    --info-bg:        #dbeafe;
+    --info-border:    #93c5fd;
+
+    --tracking-label: 0.06em;
+  }
+
+  /* ============================================================
+     COLOR TOKENS — Soft Violet
+     Monochrome violet accent (brand mark, active nav, primary
+     buttons, focus rings). Text on the accent is white.
+     Comment this block out to fall back to the raw ramp.
+     ============================================================ */
+  :root {
+    --accent: #6d5ef0;
+    --accent-hover: #5b4ce0;
+    --accent-fg: #ffffff;
+  }
+
+  /* ============================================================
+     DARK THEME
+     Repoints the neutral ramp (aliases resolve var(--n-*) on the
+     same <html> element, so every --bg-* / --text-* / --border
+     alias follows automatically), then tunes the bits the ramp
+     can't express: the desk gutter, elevation, and the semantic
+     tiers (light tints → translucent fills with lighter text).
+     The violet accent is unchanged across themes — it pops on ink.
+     Applied via [data-theme="dark"] set by the no-flash script
+     in layout.tsx.
+     ============================================================ */
+  :root[data-theme="dark"] {
+    /* Dark neutrals keep the same lavender undertone — violet-tinted ink. */
+    --n-0:   #1c1b24;  /* surface — panels / cards   */
+    --n-50:  #131219;  /* app background             */
+    --n-100: #262430;  /* sunken — hover wells (raised) */
+    --n-200: #2f2c3b;  /* border                     */
+    --n-300: #3e3a4c;  /* border-strong              */
+    --n-400: #847f9b;  /* muted text                 */
+    --n-500: #9b96b2;
+    --n-600: #b4afc9;  /* secondary text             */
+    --n-700: #ccc8db;
+    --n-800: #e5e3ef;
+    --n-900: #f5f3fb;  /* primary text               */
+    --n-950: #fbfaff;
+
+    /* accent-fg (white) comes from the brand-pass literal and works on the
+       violet in both themes, so no override is needed here. */
+
+    /* Desk sits behind the floating panels — darkest layer. */
+    --bg-desk: #08070e;
+
+    /* Elevation reads through darkening + a hairline top highlight, so
+       surfaces feel lit from above rather than flat. */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    --shadow-panel: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    /* Semantic tiers: lighter text on translucent fills so chips
+       sit on ink without glowing. The -mid fills stay as-is. */
+    --success:        #4ade80;
+    --success-bg:     rgba(34, 197, 94, 0.14);
+    --success-border: rgba(34, 197, 94, 0.30);
+
+    --warning:        #fbbf24;
+    --warning-bg:     rgba(245, 158, 11, 0.15);
+    --warning-border: rgba(245, 158, 11, 0.32);
+
+    --danger:         #f87171;
+    --danger-bg:      rgba(239, 68, 68, 0.15);
+    --danger-border:  rgba(239, 68, 68, 0.32);
+
+    --info:           #60a5fa;
+    --info-bg:        rgba(59, 130, 246, 0.16);
+    --info-border:    rgba(59, 130, 246, 0.34);
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-desk);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Page itself never scrolls — scrolling lives inside the content panel
+       so the sidebar and topbar stay fixed in place. */
+    overflow: hidden;
+  }
+
+  *, *::before, *::after { border-color: var(--border); }
+
+  /* Focus-visible safety net — a violet ring on anything keyboard-focusable
+     that doesn't define its own. Zero-specificity :where() so components that
+     set focus-visible:ring + outline-none win. */
+  :where(a, button, input, select, textarea, [role="button"], [role="tab"], [tabindex]):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-label text-muted;
+  }
+  .page-title {
+    @apply text-2xl font-semibold tracking-tight leading-tight;
+  }
+  .section-title {
+    @apply text-lg font-semibold tracking-tight;
+  }
+  .metric-value {
+    @apply text-3xl font-semibold tracking-tight font-mono leading-none;
+    font-variant-numeric: tabular-nums;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  /* Calm hover for clickable / interactive cards — no bounce; depth and
+     border tighten instead. Reads faster and more precise (Linear-grade). */
+  .hover-lift {
+    transition: box-shadow 150ms ease, border-color 150ms ease, background-color 150ms ease;
+  }
+  .hover-lift:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-strong);
+  }
+
+  /* Tactile feedback for buttons / clickable surfaces. */
+  .pressable {
+    transition: transform 100ms ease, filter 120ms ease, background-color 120ms ease;
+  }
+  .pressable:active {
+    transform: scale(0.98);
+  }
+
+  /* Brand-mark gradient — chartreuse with subtle depth. */
+  .brand-mark-gradient {
+    background-image: linear-gradient(135deg, #9a8cff 0%, var(--accent) 55%, var(--accent-hover) 100%);
+  }
+
+  /* UpNext primary card — soft accent glow in the bottom-right. */
+  .upnext-glow {
+    background-image: radial-gradient(
+      circle at 100% 100%,
+      rgba(109, 94, 240, 0.20) 0%,
+      rgba(109, 94, 240, 0.05) 35%,
+      transparent 65%
+    );
+  }
+
+  /* Stacked-bar segment grow-in. Width controlled via --target-w. */
+  @keyframes bar-expand {
+    from { width: 0; }
+    to   { width: var(--target-w); }
+  }
+  .bar-expand {
+    width: 0;
+    animation: bar-expand 700ms cubic-bezier(0.4, 0, 0.2, 1) 80ms forwards;
+  }
+
+  /* Smooth color transitions on status badges so inline edits feel alive. */
+  .badge-transition {
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+  }
+
+  /* Subtle top-to-bottom gradient on status pills — white sheen at top,
+     fades to transparent. Layered over the tone's base bg color for depth. */
+  .badge-gradient {
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  /* One-shot accent ring when an inline edit saves — confirms the change
+     landed at the point of action (fired from InlinePicker). */
+  @keyframes flash-saved {
+    from { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); }
+    to   { box-shadow: 0 0 0 6px transparent; }
+  }
+  .flash-saved {
+    animation: flash-saved 600ms ease-out;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Page content settles in on navigation (keyed by route in PageTransition),
+     smoothing the skeleton → content handoff. */
+  @keyframes page-enter {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .page-enter {
+    animation: page-enter 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Mobile nav drawer — slides in from the left. */
+  @keyframes drawer-in  { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+  @keyframes drawer-out { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+  @keyframes overlay-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  .drawer-content[data-state="open"]   { animation: drawer-in 220ms cubic-bezier(0.32, 0.72, 0, 1); }
+  .drawer-content[data-state="closed"] { animation: drawer-out 180ms ease-in; }
+  .drawer-overlay[data-state="open"]   { animation: overlay-fade-in 200ms ease; }
+
+  /* Tooltip fade-in. */
+  @keyframes tooltip-in { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+  .tooltip-content[data-state="delayed-open"],
+  .tooltip-content[data-state="instant-open"] { animation: tooltip-in 120ms ease; }
+
+  /* Board drop placeholder — the "ghost slot" a dragged card lands in. */
+  .drop-ghost {
+    border: 1.5px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    border-radius: var(--radius-md);
+  }
+}
+
+/* Honour reduced-motion globally — neutralises every animation/transition
+   above (page-enter, flash-saved, the sidebar rail slide, bar-expand, …). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
