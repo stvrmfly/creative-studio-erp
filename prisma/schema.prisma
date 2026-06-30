@@ -5,10 +5,10 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
-  // Direct (non-pooled) connection used for migrations. On a hosted DB like
-  // Neon, pooled connections can't run migrations; this points at the direct
-  // one. Locally it's just the same as DATABASE_URL.
-  directUrl = env("DIRECT_URL")
+  // Direct (non-pooled) connection used for migrations. Vercel's Postgres
+  // (Neon) integration injects this var automatically, so no manual setup is
+  // needed in the cloud. Locally it's just the same as DATABASE_URL.
+  directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
 enum UserRole {
